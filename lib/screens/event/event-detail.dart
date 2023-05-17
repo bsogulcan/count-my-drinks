@@ -8,6 +8,7 @@ import 'package:count_my_drinks/screens/order/create-order.dart';
 import 'package:count_my_drinks/services/event-service.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EventDetailScreen extends StatefulWidget {
   const EventDetailScreen({super.key, required this.event});
@@ -22,7 +23,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   EventService eventService = new EventService();
   ConfettiController _controllerTopCenter =
       ConfettiController(duration: const Duration(seconds: 4));
-
+  final ImagePicker _picker = ImagePicker();
   void deleteEventDialog() {
     showDialog(
       context: context,
@@ -106,6 +107,10 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
     );
   }
 
+  takePicture() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +124,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   child: ListTile(
                       leading: Icon(Icons.camera_alt),
                       title: Text('Add Photo')),
+                  onTap: () => takePicture(),
                 ),
                 PopupMenuItem(
                   child: ListTile(

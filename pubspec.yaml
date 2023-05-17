@@ -42,6 +42,7 @@ dependencies:
   expandable: ^5.0.1
   confetti: ^0.7.0
   dropdown_button2: ^1.8.2
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
